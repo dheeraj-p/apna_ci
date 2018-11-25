@@ -3,6 +3,7 @@
 repository_url=$1
 repository_name=$(echo "$repository_url" | cut -d"/" -f5 | cut -d"." -f1)
 CI_REPOS_DIR=".ci_repositories"
+INTEGRATION_INTERVAL=5
 
 #Create ".ci_repositories" directory if it does not already exists
 if [ ! -d "$CI_REPOS_DIR" ]; then
@@ -13,6 +14,11 @@ cd "$CI_REPOS_DIR"
 if [ ! -d "$repository_name" ]; then
   git clone "$repository_url"
 fi
-
 cd "$repository_name"
+
+while true; do
+  clear
+  mocha --reporter min
+  sleep $INTEGRATION_INTERVAL
+done
 
