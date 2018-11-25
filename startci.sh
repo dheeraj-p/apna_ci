@@ -4,7 +4,7 @@ set -e
 repository_url=$1
 repository_name=$(echo "$repository_url" | cut -d"/" -f5 | cut -d"." -f1)
 CI_REPOS_DIR=".ci_repositories"
-INTEGRATION_INTERVAL=5
+INTEGRATION_INTERVAL=600
 
 #Create ".ci_repositories" directory if it does not already exists
 if [ ! -d "$CI_REPOS_DIR" ]; then
